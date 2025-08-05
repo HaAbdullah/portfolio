@@ -22,7 +22,7 @@ const projectsData: Project[] = [
     techStack: ['Python', 'OpenCV', 'TensorFlow', 'React', 'JavaScript', 'Pandas'],
     githubUrl: 'https://github.com/HaAbdullah/OptiMove',
     demoUrl: 'https://optimove-demo.com',
-    imageUrl: '/src/assets/projects/OptiMove.png',
+    imageUrl: '/public/projects/OptiMove.png',
     featured: true
   },
   {
@@ -32,7 +32,7 @@ const projectsData: Project[] = [
     techStack: ['React', 'Vite', 'Express', 'JavaScript', 'Firebase', 'Stripe', 'Tailwind CSS'],
     githubUrl: 'https://github.com/HaAbdullah/Align',
     demoUrl: 'https://align-demo.com',
-    imageUrl: '/src/assets/projects/Align.png',
+    imageUrl: '/public/projects/Align.png',
     featured: true
   },
   {
@@ -42,7 +42,7 @@ const projectsData: Project[] = [
     techStack: ['HTML/CSS', 'JavaScript', 'Chrome Storage API'],
     githubUrl: 'https://github.com/HaAbdullah/Keywe',
     demoUrl: 'https://chromewebstore.google.com/detail/pbbojhhloifmdbggfibbjfihildgehpc',
-    imageUrl: '/src/assets/projects/KeyWe.jpg',
+    imageUrl: '/public/projects/KeyWe.jpg',
     featured: true
   },
   {
@@ -51,7 +51,7 @@ const projectsData: Project[] = [
     description: 'Analyzes an image of a chessboard and provides a recommended move for the given chess position',
     techStack: ['Python', 'OpenCV', 'TensorFlow', 'React', 'JavaScript', 'Pandas'],
     githubUrl: 'https://github.com/HaAbdullah/OptiMove',
-    imageUrl: '/src/assets/projects/OptiMove.png',
+    imageUrl: '/public/projects/OptiMove.png',
     featured: false
   },
   {
@@ -60,7 +60,7 @@ const projectsData: Project[] = [
     description: 'A clean, intuitive web platform that lets users upload resumes and job descriptions, then generates tailored resumes and cover letters to maximize job match success.',
     techStack: ['React','Express', 'JavaScript', 'Firebase', 'Stripe', 'Tailwind CSS'],
     githubUrl: 'https://github.com/HaAbdullah/Align',
-    imageUrl: '/src/assets/projects/Align.png',
+    imageUrl: '/public/projects/Align.png',
     featured: false
   },
   {
@@ -69,7 +69,7 @@ const projectsData: Project[] = [
     description: 'A website that allows citizens to report and follow issues around the city in this interactive feed and map, to basically be able to keep an eye out and be aware of things in their community.',
     techStack: ['HTML', 'CSS', 'JavaScript', 'Python'],
     githubUrl: 'https://github.com/HaAbdullah/Cypress',
-    imageUrl: '/src/assets/projects/TurboTypist1.png',
+    imageUrl: '/public/projects/TurboTypist1.png',
     featured: false
   },
   {
@@ -78,7 +78,7 @@ const projectsData: Project[] = [
     description: 'Parses a UWaterloo transcript and uses web scraping to determine courses needed to graduate',
     techStack: ['Python', 'PyPDF', 'Selenium', 'Beautiful Soup', 'HTML/CSS', 'JavaScript'],
     githubUrl: 'https://github.com/HaAbdullah/StarterHacks/',
-    imageUrl: '/src/assets/projects/GradReadyGeese.png',
+    imageUrl: '/public/projects/GradReadyGeese.png',
     featured: false
   },
   {
@@ -87,7 +87,7 @@ const projectsData: Project[] = [
     description: 'World-wide currency converter with a minimalistic aesthetic design',
     techStack: ['Python', 'PyQt5', 'Fixer.io API'],
     githubUrl: 'https://github.com/HaAbdullah/CurrenSea',
-    imageUrl: '/src/assets/projects/TurboTypist1.png',
+    imageUrl: '/public/projects/TurboTypist1.png',
     featured: false
   },
   {
@@ -96,7 +96,7 @@ const projectsData: Project[] = [
     description: 'A tracker for freelance clients and services',
     techStack: ['Python'],
     githubUrl: 'https://github.com/HaAbdullah/FreelanceManager',
-    imageUrl: '/src/assets/projects/TurboTypist1.png',
+    imageUrl: '/public/projects/TurboTypist1.png',
     featured: false
   }
 ]
