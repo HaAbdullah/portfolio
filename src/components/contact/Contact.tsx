@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut'
+        ease: "easeOut" as const
       }
     }
   }
@@ -89,6 +89,7 @@ const Contact: React.FC = () => {
         py: { xs: 4, md: 6 },
         borderBottom: '1px solid rgba(100, 255, 218, 0.1)'
       }}
+      id="contact"
     >
       <Container maxWidth="md">
         <motion.div
