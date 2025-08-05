@@ -29,8 +29,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercent = (scrollTop / docHeight) * 100
+
       
       setIsScrolled(scrollTop > 50)
       // scrollProgress is now removed since it wasn't being used
