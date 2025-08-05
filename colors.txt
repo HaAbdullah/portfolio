@@ -1,0 +1,2 @@
+background, text, borders/important text
+0a192f,ccd6f6,64ffda
