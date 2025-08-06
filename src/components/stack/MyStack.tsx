@@ -1,5 +1,6 @@
 import { Box, Typography, Container } from '@mui/material'
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import { 
   SiJavascript, 
   SiTypescript, 
@@ -86,7 +87,7 @@ const stackData: StackCategory[] = [
   }
 ]
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -95,7 +96,7 @@ const containerVariants = {
   }
 }
 
-const stackRowVariants = {
+const stackRowVariants: Variants = {
   hidden: { 
     opacity: 0, 
     y: 30 
@@ -111,7 +112,7 @@ const stackRowVariants = {
   }
 }
 
-const techVariants = {
+const techVariants: Variants = {
   hidden: { 
     opacity: 0, 
     x: -20,
@@ -193,7 +194,7 @@ const MyStack: React.FC<MyStackProps> = ({
           viewport={{ once: true, margin: '-50px' }}
         >
           <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-            {stackData.map((stack, stackIndex) => (
+            {stackData.map((stack) => (
               <motion.div
                 key={stack.title}
                 variants={stackRowVariants}
@@ -239,7 +240,7 @@ const MyStack: React.FC<MyStackProps> = ({
                       alignItems: 'center'
                     }}
                   >
-                    {stack.technologies.map((tech, techIndex) => {
+                    {stack.technologies.map((tech) => {
                       const Icon = tech.icon
                       return (
                         <motion.div
