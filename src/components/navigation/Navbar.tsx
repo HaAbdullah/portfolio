@@ -345,8 +345,7 @@ const Navbar: React.FC = () => {
                 gap: 3,
               }}
             >
-<<<<<<< HEAD
-              {socialLinks.map((social, index) => {
+              {socialLinks.map((social) => {
                 const IconComponent = social.icon
                 return (
                   <motion.div
