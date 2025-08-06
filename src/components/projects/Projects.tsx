@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Box, Typography, Container, useTheme, IconButton, Button } from '@mui/material'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { GitHub, Launch, ChevronLeft, ChevronRight } from '@mui/icons-material'
+import { getImagePath } from '../../utils/imagePaths'
 
 interface Project {
   id: string
@@ -198,7 +199,7 @@ const Projects: React.FC = () => {
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  backgroundImage: `url(${featuredProjects[currentSlide]?.imageUrl})`,
+                  backgroundImage: `url(${getImagePath(featuredProjects[currentSlide]?.imageUrl || '')})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
