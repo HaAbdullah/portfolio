@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Box, Typography, IconButton, Container, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material'
+import { Box, Typography, IconButton, Container, Drawer } from '@mui/material'
 import { Email, GitHub, LinkedIn, Menu, Close } from '@mui/icons-material'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface NavItem {
   label: string
@@ -25,16 +25,12 @@ const socialLinks = [
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercent = (scrollTop / docHeight) * 100
       
       setIsScrolled(scrollTop > 50)
-      setScrollProgress(Math.min(scrollPercent, 100))
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -349,6 +345,7 @@ const Navbar: React.FC = () => {
                 gap: 3,
               }}
             >
+<<<<<<< HEAD
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon
                 return (
