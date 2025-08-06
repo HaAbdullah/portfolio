@@ -77,8 +77,7 @@ const Contact: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-<<<<<<< HEAD
-        ease: [0.4, 0, 0.2, 1]
+        ease: "easeOut" as const
       }
     }
   }
