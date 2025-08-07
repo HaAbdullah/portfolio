@@ -258,7 +258,6 @@ const MyStack: React.FC<MyStackProps> = ({
                               backgroundColor: 'rgba(100, 255, 218, 0.05)',
                               border: '1px solid rgba(100, 255, 218, 0.1)',
                               transition: 'all 0.3s ease',
-                              cursor: 'pointer',
                               '&:hover': {
                                 backgroundColor: 'rgba(100, 255, 218, 0.1)',
                                 border: '1px solid rgba(100, 255, 218, 0.3)',

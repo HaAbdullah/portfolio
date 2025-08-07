@@ -103,7 +103,6 @@ const Navbar: React.FC = () => {
                 sx={{
                   fontWeight: 900,
                   color: '#ccd6f6',
-                  cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   fontSize: isScrolled ? '1.5rem' : '1.8rem',
                   lineHeight: 1,
