@@ -36,7 +36,7 @@ const projectsData: Project[] = [
     description: 'A clean, intuitive web platform that lets users upload resumes and job descriptions, then generates tailored resumes and cover letters to maximize job match success.',
     techStack: ['React', 'Vite', 'Express', 'JavaScript', 'Firebase', 'Stripe', 'Tailwind CSS'],
     githubUrl: 'https://github.com/HaAbdullah/Align',
-    demoUrl: 'https://align-demo.com',
+    demoUrl: 'https://alignresume.netlify.app/',
     imageUrl: `${getBasePath()}projects/Align.png`,
     featured: true
   },
