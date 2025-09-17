@@ -204,7 +204,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
             whiteSpace: 'nowrap',
           }}
         >
-          {imageNames[currentImage]} • Click to cycle
+          {imageNames[currentImage]} - Click to cycle
         </motion.div>
       )}
     </Box>
