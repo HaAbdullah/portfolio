@@ -10,6 +10,11 @@ interface ContactFormData {
 }
 
 const Contact: React.FC = () => {
+
+
+  const handleClick = () => {
+    console.log("Oh how life used to be")
+  }
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -117,6 +122,7 @@ const Contact: React.FC = () => {
               <Typography
                 variant="h2"
                 component="h2"
+                onClick={handleClick}
                 sx={{
                   color: '#ccd6f6',
                   fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
