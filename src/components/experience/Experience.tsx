@@ -24,7 +24,6 @@ const experienceData: ExperienceData[] = [
     description: [
       'Deployed a Java Spring Boot microservice to process real-time water quality data from 500+ sensors, using Redis caching to reduce database queries by 75% and handle 1K+ requests/hour',
       'Automated percentile calculations across 13M+ hydrometric records using optimized PL/SQL procedures and materialized view caching, reducing processing time by 84% and improving query response time by 2.5x',
-      'Developing Spring Boot API gateway to centralize 20+ database connections, implementing pooling and query optimization, expected to reduce response times by 60% and improve query data metrics by 50%',
       'Built ETL PostgreSQL pipeline aggregating real-time data from 200+ monitoring stations, implementing data normalization and storage optimization achieving <1s query times for 20,000 monthly users',
       'Built custom JIRA dashboard gadget using Atlassian SDK to track billable hours across 8 internal clients, automating weekly time allocation reports and eliminating manual aggregation',
       'Aiding in the implementation Liquibase VCS for Oracle systems, establishing CI/CD pipeline expected to reduce deployment errors and standardized database change management processes alongside Git'
