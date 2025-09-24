@@ -4,7 +4,7 @@ Here is where my beloved portfolio lives.
 
 Find it hosted live below:  
 - [GitHub Pages](https://haabdullah.github.io/portfolio/)  
-- [Vercel](https://portfolio-haabdullah.vercel.app/)  
+- [Vercel](https://abdullahhasanjee.vercel.app/)  
 
 --- 
 
