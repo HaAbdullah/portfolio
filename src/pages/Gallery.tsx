@@ -3,6 +3,7 @@ import { Box, Typography, Container, useMediaQuery, useTheme } from '@mui/materi
 import { motion, AnimatePresence } from 'framer-motion'
 import { Close } from '@mui/icons-material'
 
+
 const VIDEO_EXTS = new Set(['mp4', 'webm', 'mov', 'ogg'])
 
 interface GalleryItem {
@@ -20,7 +21,6 @@ const Gallery: React.FC = () => {
   const isLg = useMediaQuery(theme.breakpoints.up('lg'))
   const numColumns = isLg ? 4 : isMd ? 3 : isSm ? 2 : 1
 
-  // Distribute items left-to-right (row-first) into columns
   const columns = Array.from({ length: numColumns }, (_, col) =>
     items.filter((_, i) => i % numColumns === col)
   )
@@ -109,70 +109,60 @@ const Gallery: React.FC = () => {
 
         {/* Masonry Grid */}
         {items.length > 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Box sx={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              {columns.map((col, colIdx) => (
-                <Box key={colIdx} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {col.map((item) => {
-                    // Global index for stagger delay
-                    const globalIdx = items.indexOf(item)
-                    return (
-                      <motion.div
-                        key={item.src}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: globalIdx * 0.04 }}
-                      >
+          <Box sx={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+            {columns.map((col, colIdx) => (
+              <Box key={colIdx} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {col.map((item, rowIdx) => (
+                  <motion.div
+                    key={item.src}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: rowIdx * 0.15 }}
+                  >
+                    <Box
+                      onClick={() => item.type === 'image' && setLightbox(item.src)}
+                      sx={{
+                        overflow: 'hidden',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(100, 255, 218, 0.08)',
+                        cursor: item.type === 'video' ? 'default' : 'zoom-in',
+                        transition: 'all 0.35s ease',
+                        '&:hover': {
+                          border: '1px solid rgba(100, 255, 218, 0.4)',
+                          boxShadow: '0 8px 32px rgba(100, 255, 218, 0.12)',
+                          transform: 'translateY(-3px)',
+                        },
+                        '&:hover img': { transform: 'scale(1.03)' },
+                      }}
+                    >
+                      {item.type === 'video' ? (
                         <Box
-                          onClick={() => item.type === 'image' && setLightbox(item.src)}
+                          component="video"
+                          src={item.src}
+                          controls
+                          playsInline
+                          sx={{ width: '100%', height: 'auto', display: 'block' }}
+                        />
+                      ) : (
+                        <Box
+                          component="img"
+                          src={item.src}
+                          loading="lazy"
+                          decoding="async"
                           sx={{
-                            overflow: 'hidden',
-                            borderRadius: '8px',
-                            border: '1px solid rgba(100, 255, 218, 0.08)',
-                            cursor: item.type === 'video' ? 'default' : 'zoom-in',
-                            transition: 'all 0.35s ease',
-                            '&:hover': {
-                              border: '1px solid rgba(100, 255, 218, 0.4)',
-                              boxShadow: '0 8px 32px rgba(100, 255, 218, 0.12)',
-                              transform: 'translateY(-3px)',
-                            },
-                            '&:hover img': { transform: 'scale(1.03)' },
+                            width: '100%',
+                            height: 'auto',
+                            display: 'block',
+                            transition: 'transform 0.35s ease',
                           }}
-                        >
-                          {item.type === 'video' ? (
-                            <Box
-                              component="video"
-                              src={item.src}
-                              controls
-                              playsInline
-                              sx={{ width: '100%', height: 'auto', display: 'block' }}
-                            />
-                          ) : (
-                            <Box
-                              component="img"
-                              src={item.src}
-                              loading="lazy"
-                              decoding="async"
-                              sx={{
-                                width: '100%',
-                                height: 'auto',
-                                display: 'block',
-                                transition: 'transform 0.35s ease',
-                              }}
-                            />
-                          )}
-                        </Box>
-                      </motion.div>
-                    )
-                  })}
-                </Box>
-              ))}
-            </Box>
-          </motion.div>
+                        />
+                      )}
+                    </Box>
+                  </motion.div>
+                ))}
+              </Box>
+            ))}
+          </Box>
         ) : (
           <motion.div
             initial={{ opacity: 0 }}

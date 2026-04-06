@@ -106,6 +106,19 @@ const projectsData: Project[] = [
   }
 ]
 
+const getArrowSx = (side: 'left' | 'right') => ({
+  position: 'absolute' as const,
+  [side]: -60,
+  top: '50%',
+  transform: 'translateY(-50%)',
+  color: '#a8b2d1',
+  backgroundColor: 'rgba(10, 25, 47, 0.9)',
+  '&:hover': {
+    color: '#64ffda',
+    backgroundColor: 'rgba(10, 25, 47, 1)',
+  },
+})
+
 const Projects: React.FC = () => {
   const theme = useTheme()
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -311,39 +324,11 @@ const Projects: React.FC = () => {
           </Box>
 
           {/* Navigation Arrows */}
-          <IconButton
-            onClick={prevSlide}
-            sx={{
-              position: 'absolute',
-              left: -60,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: theme.palette.text.secondary,
-              backgroundColor: 'rgba(10, 25, 47, 0.9)',
-              '&:hover': {
-                color: theme.palette.primary.main,
-                backgroundColor: 'rgba(10, 25, 47, 1)'
-              }
-            }}
-          >
+          <IconButton onClick={prevSlide} sx={getArrowSx('left')}>
             <ChevronLeft fontSize="large" />
           </IconButton>
 
-          <IconButton
-            onClick={nextSlide}
-            sx={{
-              position: 'absolute',
-              right: -60,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: theme.palette.text.secondary,
-              backgroundColor: 'rgba(10, 25, 47, 0.9)',
-              '&:hover': {
-                color: theme.palette.primary.main,
-                backgroundColor: 'rgba(10, 25, 47, 1)'
-              }
-            }}
-          >
+          <IconButton onClick={nextSlide} sx={getArrowSx('right')}>
             <ChevronRight fontSize="large" />
           </IconButton>
 

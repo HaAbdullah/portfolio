@@ -12,6 +12,18 @@ interface HeroProps {
   description?: string
 }
 
+const contactIconSx = {
+  color: '#64ffda',
+  backgroundColor: 'rgba(100, 255, 218, 0.1)',
+  border: '2px solid #64ffda',
+  transition: 'all 0.3s ease',
+  p: 1.5,
+  '&:hover': {
+    backgroundColor: 'rgba(100, 255, 218, 0.2)',
+    transform: 'translateY(-2px)',
+  },
+}
+
 const Hero: React.FC<HeroProps> = ({
   name = "Hey, Abdullah here.",
   title = "I craft digital experiences.",
@@ -226,17 +238,7 @@ const Hero: React.FC<HeroProps> = ({
                       href="https://www.linkedin.com/in/abdullah-hasanjee/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      sx={{
-                        color: '#64ffda',
-                        backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                        border: '2px solid #64ffda',
-                        '&:hover': {
-                          backgroundColor: 'rgba(100, 255, 218, 0.2)',
-                          transform: 'translateY(-2px)',
-                        },
-                        transition: 'all 0.3s ease',
-                        p: 1.5
-                      }}
+                      sx={contactIconSx}
                     >
                       <LinkedIn fontSize="large" />
                     </IconButton>
@@ -257,17 +259,7 @@ const Hero: React.FC<HeroProps> = ({
                     
                     <IconButton
                       href="mailto:abdullah.hasanjee@gmail.com"
-                      sx={{
-                        color: '#64ffda',
-                        backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                        border: '2px solid #64ffda',
-                        '&:hover': {
-                          backgroundColor: 'rgba(100, 255, 218, 0.2)',
-                          transform: 'translateY(-2px)',
-                        },
-                        transition: 'all 0.3s ease',
-                        p: 1.5
-                      }}
+                      sx={contactIconSx}
                     >
                       <Email fontSize="large" />
                     </IconButton>

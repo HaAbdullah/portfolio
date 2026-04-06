@@ -16,14 +16,15 @@ import {
   SiPostgresql, 
   SiOracle,
   SiMongodb,
-  SiGit, 
-  SiDocker, 
+  SiGit,
+  SiDocker,
   SiAmazonwebservices,
   SiLinux,
   SiFigma,
   SiHtml5
 } from 'react-icons/si'
 import { FaJava } from 'react-icons/fa'
+import { VscAzure } from 'react-icons/vsc'
 
 interface TechItem {
   name: string
@@ -81,6 +82,7 @@ const stackData: StackCategory[] = [
       { name: 'Git', icon: SiGit, color: '#F05032' },
       { name: 'Docker', icon: SiDocker, color: '#2496ED' },
       { name: 'AWS', icon: SiAmazonwebservices, color: '#FF9900' },
+      { name: 'Azure', icon: VscAzure, color: '#0078D4' },
       { name: 'Linux', icon: SiLinux, color: '#FCC624' },
       { name: 'Figma', icon: SiFigma, color: '#F24E1E' }
     ]

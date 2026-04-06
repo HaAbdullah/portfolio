@@ -9,12 +9,20 @@ interface ContactFormData {
   message: string
 }
 
+const textFieldSx = {
+  '& .MuiOutlinedInput-root': {
+    color: '#ccd6f6',
+    '& fieldset': { borderColor: 'rgba(100, 255, 218, 0.3)' },
+    '&:hover fieldset': { borderColor: 'rgba(100, 255, 218, 0.5)' },
+    '&.Mui-focused fieldset': { borderColor: '#64ffda' },
+  },
+  '& .MuiInputLabel-root': {
+    color: '#a8b2d1',
+    '&.Mui-focused': { color: '#64ffda' },
+  },
+}
+
 const Contact: React.FC = () => {
-
-
-  const handleClick = () => {
-    console.log("Oh how life used to be")
-  }
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -122,7 +130,7 @@ const Contact: React.FC = () => {
               <Typography
                 variant="h2"
                 component="h2"
-                onClick={handleClick}
+
                 sx={{
                   color: '#ccd6f6',
                   fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
@@ -290,26 +298,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange('name')}
                     required
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        color: '#ccd6f6',
-                        '& fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.3)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.5)',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#64ffda',
-                        },
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#a8b2d1',
-                        '&.Mui-focused': {
-                          color: '#64ffda',
-                        },
-                      },
-                    }}
+                    sx={textFieldSx}
                   />
                 </motion.div>
 
@@ -321,26 +310,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange('email')}
                     required
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        color: '#ccd6f6',
-                        '& fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.3)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.5)',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#64ffda',
-                        },
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#a8b2d1',
-                        '&.Mui-focused': {
-                          color: '#64ffda',
-                        },
-                      },
-                    }}
+                    sx={textFieldSx}
                   />
                 </motion.div>
 
@@ -353,26 +323,7 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange('message')}
                     required
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        color: '#ccd6f6',
-                        '& fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.3)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: 'rgba(100, 255, 218, 0.5)',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#64ffda',
-                        },
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#a8b2d1',
-                        '&.Mui-focused': {
-                          color: '#64ffda',
-                        },
-                      },
-                    }}
+                    sx={textFieldSx}
                   />
                 </motion.div>
 

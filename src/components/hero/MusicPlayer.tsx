@@ -39,6 +39,12 @@ const fallbackPlaylist: YouTubeVideo[] = [
   }
 ]
 
+const controlBtnSx = {
+  color: '#64ffda',
+  p: 1,
+  '&:hover': { backgroundColor: 'rgba(100, 255, 218, 0.1)' },
+}
+
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlistId, opacity = 0.4 }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
@@ -440,37 +446,18 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlistId, opacity = 0.4 }) 
             
             {/* Control Buttons Row */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <IconButton
-                onClick={togglePlaylist}
-                sx={{
-                  color: '#64ffda',
-                  p: 1,
-                  '&:hover': { backgroundColor: 'rgba(100, 255, 218, 0.1)' },
-                }}
-              >
+              <IconButton onClick={togglePlaylist} sx={controlBtnSx}>
                 <QueueMusic fontSize="small" />
               </IconButton>
-              
+
               <IconButton
                 onClick={handlePlayPause}
-                sx={{
-                  color: '#64ffda',
-                  backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                  p: 1.5,
-                  '&:hover': { backgroundColor: 'rgba(100, 255, 218, 0.2)' },
-                }}
+                sx={{ ...controlBtnSx, p: 1.5, backgroundColor: 'rgba(100, 255, 218, 0.1)', '&:hover': { backgroundColor: 'rgba(100, 255, 218, 0.2)' } }}
               >
                 {isPlaying ? <Pause /> : <PlayArrow />}
               </IconButton>
-              
-              <IconButton
-                onClick={playNextSong}
-                sx={{
-                  color: '#64ffda',
-                  p: 1,
-                  '&:hover': { backgroundColor: 'rgba(100, 255, 218, 0.1)' },
-                }}
-              >
+
+              <IconButton onClick={playNextSong} sx={controlBtnSx}>
                 <SkipNext fontSize="small" />
               </IconButton>
             </Box>

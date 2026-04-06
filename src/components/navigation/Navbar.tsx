@@ -25,6 +25,15 @@ const socialLinks = [
   { icon: LinkedIn, href: 'https://www.linkedin.com/in/abdullah-hasanjee/', label: 'LinkedIn' }
 ]
 
+const iconButtonSx = {
+  color: '#a8b2d1',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    color: '#64ffda',
+    backgroundColor: 'rgba(100, 255, 218, 0.1)',
+  },
+}
+
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -165,27 +174,16 @@ const Navbar: React.FC = () => {
                 <Box key={item.label} sx={{ display: 'flex', alignItems: 'center' }}>
                   {/* Thin separator before the Gallery route link */}
                   {item.route && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <Box
-                        sx={{
-                          width: '1px',
-                          height: '18px',
-                          backgroundColor: 'rgba(100, 255, 218, 0.25)',
-                          mr: isScrolled ? 3 : 4,
-                        }}
-                      />
-                    </motion.div>
+                    <Box
+                      sx={{
+                        width: '1px',
+                        height: '18px',
+                        backgroundColor: 'rgba(100, 255, 218, 0.25)',
+                        mr: isScrolled ? 3 : 4,
+                      }}
+                    />
                   )}
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{}}
-                >
+                <div>
                   <Typography
                     variant="body1"
                     sx={{
@@ -219,7 +217,7 @@ const Navbar: React.FC = () => {
                   >
                     {item.label}
                   </Typography>
-                </motion.div>
+                </div>
                 </Box>
               ))}
             </Box>
@@ -228,13 +226,7 @@ const Navbar: React.FC = () => {
             <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
               <IconButton
                 onClick={() => setMobileMenuOpen(true)}
-                sx={{
-                  color: '#a8b2d1',
-                  '&:hover': {
-                    color: '#64ffda',
-                    backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                  },
-                }}
+                sx={iconButtonSx}
               >
                 <Menu />
               </IconButton>
@@ -264,14 +256,7 @@ const Navbar: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       size={isScrolled ? 'medium' : 'large'}
-                      sx={{
-                        color: '#a8b2d1',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          color: '#64ffda',
-                          backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                        },
-                      }}
+                      sx={iconButtonSx}
                     >
                       <IconComponent fontSize={isScrolled ? 'medium' : 'large'} />
                     </IconButton>
@@ -423,15 +408,7 @@ const Navbar: React.FC = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      sx={{
-                        color: '#a8b2d1',
-                        fontSize: '2rem',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          color: '#64ffda',
-                          backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                        },
-                      }}
+                      sx={{ ...iconButtonSx, fontSize: '2rem' }}
                     >
                       <IconComponent fontSize="large" />
                     </IconButton>

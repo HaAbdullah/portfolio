@@ -7,9 +7,22 @@ interface VideoBackgroundProps {
   opacity?: number
 }
 
-const VideoBackground: React.FC<VideoBackgroundProps> = ({ 
-  videoId, 
-  opacity = 0.3 
+const iframeStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  width: '100vw',
+  height: '56.25vw',
+  minHeight: '100vh',
+  minWidth: '177.78vh',
+  transform: 'translate(-50%, -50%)',
+  border: 'none',
+  pointerEvents: 'none',
+}
+
+const VideoBackground: React.FC<VideoBackgroundProps> = ({
+  videoId,
+  opacity = 0.3
 }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
@@ -57,18 +70,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             <iframe
               ref={iframeRef}
               src={`https://www.youtube.com/embed/${videoId}?autoplay=${hasStarted ? 1 : 0}&mute=0&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: '100vw',
-                height: '56.25vw',
-                minHeight: '100vh',
-                minWidth: '177.78vh',
-                transform: 'translate(-50%, -50%)',
-                border: 'none',
-                pointerEvents: 'none',
-              }}
+              style={iframeStyle}
               allow="autoplay; encrypted-media"
               title="Background Video"
             />
