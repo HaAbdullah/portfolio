@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { Box, Typography, IconButton, Container, Drawer } from '@mui/material'
 import { Email, GitHub, LinkedIn, Menu, Close } from '@mui/icons-material'
 import { motion } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 interface NavItem {
   label: string
   href: string
+  route?: string
 }
 
 const navItems: NavItem[] = [
@@ -13,7 +15,8 @@ const navItems: NavItem[] = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' }
+  { label: 'Contact', href: '#contact' },
+  { label: 'Gallery', href: '', route: '/gallery' },
 ]
 
 const socialLinks = [
@@ -25,27 +28,46 @@ const socialLinks = [
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY
-      
-      setIsScrolled(scrollTop > 50)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
+  // After navigating home with a scrollTo target, perform the scroll
+  useEffect(() => {
+    const target = (location.state as any)?.scrollTo
+    if (!target || location.pathname !== '/') return
+    const timeout = setTimeout(() => {
+      if (target === '#home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 80)
+    // Clear state so a back-navigation doesn't re-trigger the scroll
+    navigate('/', { replace: true, state: {} })
+    return () => clearTimeout(timeout)
+  }, [location.state, location.pathname])
+
+  const handleNavClick = (item: NavItem) => {
     setMobileMenuOpen(false)
-    if (href === '#home') {
+    if (item.route) {
+      navigate(item.route)
+      return
+    }
+    // If we're not on the home page, go there first and pass the scroll target
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: item.href } })
+      return
+    }
+    if (item.href === '#home') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
+      document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
@@ -68,19 +90,30 @@ const Navbar: React.FC = () => {
     >
       <Box
         sx={{
-          backgroundColor: isScrolled 
-            ? 'rgba(10, 25, 47, 0.95)' 
+          backgroundColor: isScrolled
+            ? 'rgba(10, 25, 47, 0.95)'
             : 'rgba(10, 25, 47, 0.98)',
           backdropFilter: isScrolled ? 'blur(20px)' : 'blur(10px)',
-          borderRadius: isScrolled ? 16 : 0,
-          border: isScrolled ? '1px solid rgba(100, 255, 218, 0.2)' : 'none',
-          borderBottom: !isScrolled ? '1px solid rgba(100, 255, 218, 0.1)' : 'none',
-          boxShadow: isScrolled 
-            ? '0 8px 32px rgba(100, 255, 218, 0.15)' 
+          // Use px so CSS transition can interpolate the value smoothly
+          borderRadius: isScrolled ? '64px' : '0px',
+          // Always keep a border, animate only the color — avoids the none↔solid snap
+          border: '1px solid',
+          borderColor: isScrolled
+            ? 'rgba(100, 255, 218, 0.2)'
+            : 'rgba(100, 255, 218, 0.1)',
+          boxShadow: isScrolled
+            ? '0 8px 32px rgba(100, 255, 218, 0.15)'
             : '0 2px 20px rgba(0, 0, 0, 0.3)',
           padding: isScrolled ? '16px 32px' : '12px 0',
           position: 'relative',
-          overflow: 'hidden',
+          // Drive the shape morph through CSS transition (easy to tune or remove)
+          transition: [
+            'border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+            'border-color 0.35s ease',
+            'background-color 0.35s ease',
+            'box-shadow 0.35s ease',
+            'padding 0.35s ease',
+          ].join(', '),
         }}
       >
 
@@ -135,19 +168,33 @@ const Navbar: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{}}
+                  style={{ display: 'flex', alignItems: 'center', gap: item.route ? undefined : undefined }}
                 >
+                  {/* Thin separator before the Gallery route link */}
+                  {item.route && (
+                    <Box
+                      sx={{
+                        width: '1px',
+                        height: '18px',
+                        backgroundColor: 'rgba(100, 255, 218, 0.25)',
+                        mr: isScrolled ? 3 : 4,
+                      }}
+                    />
+                  )}
                   <Typography
                     variant="body1"
                     sx={{
-                      color: '#a8b2d1',
+                      color: item.route ? '#64ffda' : '#a8b2d1',
                       cursor: 'pointer',
-                      fontWeight: 500,
+                      fontWeight: item.route ? 600 : 500,
                       fontSize: isScrolled ? '1.1rem' : '1.2rem',
                       position: 'relative',
                       transition: 'all 0.3s ease',
                       lineHeight: 1,
+                      opacity: item.route ? 0.85 : 1,
                       '&:hover': {
                         color: '#64ffda',
+                        opacity: 1,
                       },
                       '&::after': {
                         content: '""',
@@ -163,7 +210,7 @@ const Navbar: React.FC = () => {
                         width: '100%',
                       },
                     }}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => handleNavClick(item)}
                   >
                     {item.label}
                   </Typography>
@@ -291,12 +338,24 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
+                {/* Horizontal rule before Gallery in mobile menu */}
+                {item.route && (
+                  <Box
+                    sx={{
+                      width: '40px',
+                      height: '1px',
+                      backgroundColor: 'rgba(100, 255, 218, 0.25)',
+                      mx: 'auto',
+                      mb: 4,
+                    }}
+                  />
+                )}
                 <Typography
                   variant="h4"
                   component="button"
-                  onClick={() => handleNavClick(item.href)}
+                  onClick={() => handleNavClick(item)}
                   sx={{
-                    color: '#a8b2d1',
+                    color: item.route ? '#64ffda' : '#a8b2d1',
                     cursor: 'pointer',
                     fontWeight: 600,
                     fontSize: '2rem',
@@ -305,8 +364,10 @@ const Navbar: React.FC = () => {
                     transition: 'all 0.3s ease',
                     position: 'relative',
                     textAlign: 'center',
+                    opacity: item.route ? 0.85 : 1,
                     '&:hover': {
                       color: '#64ffda',
+                      opacity: 1,
                       transform: 'translateY(-2px)',
                     },
                     '&::after': {

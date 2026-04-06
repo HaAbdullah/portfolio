@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Navbar from './components/navigation/Navbar'
@@ -7,6 +8,7 @@ import Projects from './components/projects/Projects'
 import MyStack from './components/stack/MyStack'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
+import Gallery from './pages/Gallery'
 
 const theme = createTheme({
   palette: {
@@ -40,12 +42,22 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
-      <Hero />
-      <Experience />
-      <Projects />
-      <MyStack />
-      <Contact />
-      <Footer />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <Experience />
+              <Projects />
+              <MyStack />
+              <Contact />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
     </ThemeProvider>
   )
 }
