@@ -43,6 +43,8 @@ const Gallery: React.FC = () => {
           const ext = f.split('.').pop()?.toLowerCase() ?? ''
           return { src: `${base}gallery/${f}`, type: VIDEO_EXTS.has(ext) ? 'video' : 'image' }
         })
+        // Videos always last
+        parsed.sort((a, b) => (a.type === 'video' ? 1 : 0) - (b.type === 'video' ? 1 : 0))
         setItems(parsed)
       })
       .catch(() => setItems([]))
