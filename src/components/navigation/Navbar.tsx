@@ -170,7 +170,7 @@ const Navbar: React.FC = () => {
                 mr: 6,
               }}
             >
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <Box key={item.label} sx={{ display: 'flex', alignItems: 'center' }}>
                   {/* Thin separator before the Gallery route link */}
                   {item.route && (
