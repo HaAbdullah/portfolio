@@ -107,6 +107,7 @@ const projectsData: Project[] = [
 ]
 
 const getArrowSx = (side: 'left' | 'right') => ({
+  display: { xs: 'none', md: 'flex' },
   position: 'absolute' as const,
   [side]: -60,
   top: '50%',
@@ -162,7 +163,7 @@ const Projects: React.FC = () => {
             variant="h2"
             component="h2"
             sx={{
-              fontSize: '3rem',
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
               fontWeight: 700,
               color: theme.palette.text.primary,
               position: 'relative',
@@ -193,7 +194,7 @@ const Projects: React.FC = () => {
           <Box
             sx={{
               position: 'relative',
-              height: '600px',
+              height: { xs: '380px', sm: '480px', md: '600px' },
               borderRadius: 2,
               overflow: 'hidden',
               border: `2px solid ${theme.palette.primary.main}`,

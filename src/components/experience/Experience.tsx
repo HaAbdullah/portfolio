@@ -114,7 +114,7 @@ const Experience: React.FC = () => {
             variant="h2"
             component="h2"
             sx={{
-              fontSize: '3rem',
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
               fontWeight: 700,
               color: theme.palette.text.primary,
               position: 'relative',
