@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
                     color: '#64ffda',
                   },
                 }}
-                onClick={() => handleNavClick('#')}
+                onClick={() => handleNavClick({ label: 'Home', href: '#home' })}
               >
                 Abdullah Hasanjee
               </Typography>
