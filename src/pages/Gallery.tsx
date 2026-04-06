@@ -155,6 +155,8 @@ const Gallery: React.FC = () => {
                             <Box
                               component="img"
                               src={item.src}
+                              loading="lazy"
+                              decoding="async"
                               sx={{
                                 width: '100%',
                                 height: 'auto',

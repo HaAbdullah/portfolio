@@ -162,25 +162,30 @@ const Navbar: React.FC = () => {
               }}
             >
               {navItems.map((item, index) => (
+                <Box key={item.label} sx={{ display: 'flex', alignItems: 'center' }}>
+                  {/* Thin separator before the Gallery route link */}
+                  {item.route && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <Box
+                        sx={{
+                          width: '1px',
+                          height: '18px',
+                          backgroundColor: 'rgba(100, 255, 218, 0.25)',
+                          mr: isScrolled ? 3 : 4,
+                        }}
+                      />
+                    </motion.div>
+                  )}
                 <motion.div
-                  key={item.label}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{}}
-                  style={{ display: 'flex', alignItems: 'center', gap: item.route ? undefined : undefined }}
                 >
-                  {/* Thin separator before the Gallery route link */}
-                  {item.route && (
-                    <Box
-                      sx={{
-                        width: '1px',
-                        height: '18px',
-                        backgroundColor: 'rgba(100, 255, 218, 0.25)',
-                        mr: isScrolled ? 3 : 4,
-                      }}
-                    />
-                  )}
                   <Typography
                     variant="body1"
                     sx={{
@@ -215,6 +220,7 @@ const Navbar: React.FC = () => {
                     {item.label}
                   </Typography>
                 </motion.div>
+                </Box>
               ))}
             </Box>
 

@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Navbar from './components/navigation/Navbar'
@@ -38,6 +39,31 @@ const theme = createTheme({
 })
 
 function App() {
+  const location = useLocation()
+  const base = import.meta.env.BASE_URL
+
+  // After the main page is idle, prefetch gallery images in the background
+  useEffect(() => {
+    if (location.pathname !== '/') return
+    const id = requestIdleCallback(() => {
+      fetch(`${base}gallery-manifest.json`)
+        .then(r => r.json())
+        .then((files: string[]) => {
+          files.forEach(f => {
+            const ext = f.split('.').pop()?.toLowerCase() ?? ''
+            if (ext === 'mp4' || ext === 'webm' || ext === 'mov') return
+            const link = document.createElement('link')
+            link.rel = 'prefetch'
+            link.as = 'image'
+            link.href = `${base}gallery/${f}`
+            document.head.appendChild(link)
+          })
+        })
+        .catch(() => {})
+    })
+    return () => cancelIdleCallback(id)
+  }, [location.pathname, base])
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
